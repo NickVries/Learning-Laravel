@@ -11,9 +11,21 @@
 |
 */
 
-Route::get('/', 'PostsController@index');
-Route::get('/posts/create', 'PostsController@create');
-Route::get('/posts/{post}', 'PostsController@show');
+use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\PostsController;
+use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\SessionsController;
+use Illuminate\Support\Facades\Route;
 
-Route::post('/posts', 'PostsController@store');
-Route::post('/posts/{post}/comments', 'CommentsController@store');
+Route::get('/', PostsController::class . '@index')->name('home');
+Route::get('/posts/create', PostsController::class . '@create');
+Route::get('/posts/{post}', PostsController::class . '@show');
+Route::post('/posts', PostsController::class . '@store');
+
+Route::post('/posts/{post}/comments', CommentsController::class . '@store');
+
+Route::get('/register', RegistrationController::class . '@create');
+Route::post('/register', RegistrationController::class . '@store');
+
+Route::get('/login', SessionsController::class . '@create');
+Route::get('/logout', SessionsController::class . '@destroy');
