@@ -28,4 +28,5 @@ Route::get('/register', RegistrationController::class . '@create');
 Route::post('/register', RegistrationController::class . '@store');
 
 Route::get('/login', SessionsController::class . '@create');
+Route::post('/sessions', SessionsController::class . '@store');
 Route::get('/logout', SessionsController::class . '@destroy');
