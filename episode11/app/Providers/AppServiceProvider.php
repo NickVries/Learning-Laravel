@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Post;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -18,6 +19,10 @@ class AppServiceProvider extends ServiceProvider
         } else {
             error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED);
         }
+
+        view()->composer('layouts.sidebar', function ($view) {
+            $view->with('archives', Post::archives());
+        });
     }
 
     /**

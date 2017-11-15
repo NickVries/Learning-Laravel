@@ -27,6 +27,6 @@ Route::post('/posts/{post}/comments', CommentsController::class . '@store');
 Route::get('/register', RegistrationController::class . '@create');
 Route::post('/register', RegistrationController::class . '@store');
 
-Route::get('/login', SessionsController::class . '@create');
+Route::get('/login', SessionsController::class . '@create')->name('login');
 Route::post('/sessions', SessionsController::class . '@store');
 Route::get('/logout', SessionsController::class . '@destroy');
