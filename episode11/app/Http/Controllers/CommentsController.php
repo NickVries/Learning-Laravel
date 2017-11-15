@@ -10,8 +10,9 @@ class CommentsController extends Controller
     public function store(Post $post)
     {
         $this->validate(request(), ['body' => 'required|min:2']);
+        $user_id = auth()->user()->id;
 
-        $post->addComment(request('body'));
+        $post->addComment(request('body'), $user_id);
 
         return back();
     }

@@ -8,6 +8,12 @@
             <a class="nav-link" href="#">About</a>
             @if (auth()->check())
                 <a class="nav-link ml-auto" href="#">{{ auth()->user()->name }}</a>
+                <a class="nav-link ml-auto" href="/posts/create">Create Post</a>
+                <a class="nav-link ml-auto" href="/logout">Logout</a>
+
+            @else
+                <a class="nav-link ml-auto" href="/login">Login</a>
+                <a class="nav-link ml-auto" href="/register">Register</a>
             @endif
         </nav>
     </div>

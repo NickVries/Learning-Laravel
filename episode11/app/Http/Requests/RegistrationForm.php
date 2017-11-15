@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RegistrationForm extends FormRequest
@@ -13,7 +14,7 @@ class RegistrationForm extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,18 @@ class RegistrationForm extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|confirmed',
         ];
+    }
+
+    public function persist()
+    {
+        $user = User::create(
+            $this->only(['name', 'email', 'password'])
+        );
+
+        auth()->login($user);
     }
 }
