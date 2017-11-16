@@ -15,6 +15,7 @@ use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\TagsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', PostsController::class . '@index')->name('home');
@@ -30,3 +31,5 @@ Route::post('/register', RegistrationController::class . '@store');
 Route::get('/login', SessionsController::class . '@create')->name('login');
 Route::post('/sessions', SessionsController::class . '@store');
 Route::get('/logout', SessionsController::class . '@destroy');
+
+Route::get('/posts/tags/{tag}', TagsController::class . '@index');

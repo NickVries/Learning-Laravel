@@ -5,9 +5,21 @@
         <h1>
             {{ $post->title }}
         </h1>
+
         <p class="blog-post-meta">
             {{ $post->created_at->toFormattedDateString() }}
         </p>
+
+        @if (count($post->tags))
+            @foreach ($post->tags as $tag)
+                <li>
+                    <a href="/posts/tags/{{ $tag->name }}">
+                        {{ $tag->name }}
+                    </a>
+                </li>
+            @endforeach
+        @endif
+
         {{ $post->body }}
 
         <hr>
